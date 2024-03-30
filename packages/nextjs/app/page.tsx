@@ -1,12 +1,14 @@
 "use client";
 
+import { useState } from "react";
 import type { NextPage } from "next";
 import { useAccount } from "wagmi";
-import { Address } from "~~/components/scaffold-eth";
-import { useScaffoldContractRead } from "~~/hooks/scaffold-eth";
+import { Address, AddressInput } from "~~/components/scaffold-eth";
+import { useScaffoldContractRead, useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
 
 const Home: NextPage = () => {
   const { address } = useAccount();
+  const [inputAddress, setInputAddress] = useState("");
   // const { data: someVariableName } = useScaffoldContractRead({
   //   contractName: "YourContract",
   //   functionName: "owner",
@@ -27,6 +29,12 @@ const Home: NextPage = () => {
     // if it accepts any
     // args: ["0xd8da6bf26964af9d7eed9e03e53415d37aa96045"],
   });
+
+  const { writeAsync: updateOwner } = useScaffoldContractWrite({
+    contractName: "YourContract",
+    functionName: "updateOwner",
+    args: [inputAddress],
+  });
   return (
     <>
       <div className="flex items-center flex-col flex-grow pt-10">
@@ -41,9 +49,20 @@ const Home: NextPage = () => {
               Owner Address:
               <Address address={owner}></Address>
             </div>
+            <div className="text-sm text-base-content">
+              New Owner Address:
+              <AddressInput onChange={setInputAddress} value={inputAddress} placeholder="Input your address" />
+            </div>
             <p>If a dog chews shoes whose shoes does he choose?</p>
             <div className="card-actions justify-end">
-              <button className="btn btn-primary">some button</button>
+              <button
+                className="btn btn-primary"
+                onClick={() => {
+                  updateOwner();
+                }}
+              >
+                some button
+              </button>
             </div>
           </div>
         </div>

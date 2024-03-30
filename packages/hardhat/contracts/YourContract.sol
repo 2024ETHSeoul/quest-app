@@ -1,6 +1,10 @@
 //SPDX-License-Identifier: MIT
 pragma solidity >=0.8.0 <0.9.0;
 
+// every time smart contract is updated we need to re run
+// yarn deploy to deploy the updated contracts to the
+// blockchain network, replacing the old versions!
+
 // Useful for debugging. Remove when deploying to a live network.
 import "hardhat/console.sol";
 
@@ -14,7 +18,9 @@ import "hardhat/console.sol";
  */
 contract YourContract {
 	// State Variables
-	address public immutable owner; // this line creates a view function named "owner"!
+	// immutable keyword makes it not mutable
+	// just use public without immutable to make it mutable
+	address public owner; // this line creates a view function named "owner"!
 	string public greeting = "Building Unstoppable Apps!!!";
 	bool public premium = false;
 	uint256 public totalCounter = 0;
@@ -36,11 +42,11 @@ contract YourContract {
 
 	// Modifier: used to define a set of rules that must be met before or after a function is executed
 	// Check the withdraw() function
-	modifier isOwner() {
-		// msg.sender: predefined variable that represents address of the account that called the current function
-		require(msg.sender == owner, "Not the Owner");
-		_;
-	}
+	// modifier isOwner() {
+	// 	// msg.sender: predefined variable that represents address of the account that called the current function
+	// 	require(msg.sender == owner, "Not the Owner");
+	// 	_;
+	// }
 
 	/**
 	 * Function that allows anyone to change the state variable "greeting" of the contract and increase the counters
@@ -75,9 +81,15 @@ contract YourContract {
 	 * Function that allows the owner to withdraw all the Ether in the contract
 	 * The function can only be called by the owner of the contract as defined by the isOwner modifier
 	 */
-	function withdraw() public isOwner {
+	function withdraw() public { // isOwner
 		(bool success, ) = owner.call{ value: address(this).balance }("");
 		require(success, "Failed to send Ether");
+	}
+
+// isOwner added at the end of function means
+// only the owner can call this function
+	function updateOwner(address _newOwner) public {
+		owner = _newOwner;
 	}
 
 	/**
