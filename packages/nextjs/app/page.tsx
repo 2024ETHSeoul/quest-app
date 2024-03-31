@@ -135,7 +135,7 @@ const Home: NextPage = () => {
       <div className="flex ml-8 mr-8 items-center flex-col flex-grow pt-10">
         <div className="flex w-full gap-x-8">
           <div className="grid h-20 w-3/4 flex-grow card bg-base-300 rounded-box place-items-center">
-            <div className="flex gap-y-8 flex-col w-full border-opacity-50">
+            <div className="flex gap-y-14 flex-col w-full border-opacity-50">
               <div className="grid justify-items-center items-center h-20 card border border-amber-500 rounded-br-lg bg-base-300 rounded-box place-items-center">
                 <p className="w-5/6">Crafting seamless digital experiences with user-centric design.</p>
               </div>
@@ -150,7 +150,7 @@ const Home: NextPage = () => {
               </div>
             </div>
           </div>
-          <div className="grid h-[420px] w-3/4 px-6 py-6 border border-amber-500 rounded-br-lg flex-grow card bg-base-300 rounded-box place-items-center">
+          <div className="grid h-[500px] w-3/4 px-6 py-6 border border-amber-500 rounded-br-lg flex-grow card bg-base-300 rounded-box place-items-center">
             <div className="flex mx-8 flex-col h-full w-full border-opacity-50">
               <div className="flex items-center gap-4">
                 <Image alt="person avatar" width={50} height={50} src="/profile1.png" />
@@ -173,19 +173,14 @@ const Home: NextPage = () => {
                   involve generating proposals for creative planning and visual styles and bring them to life through
                   various forms of expression such as key visuals, posters, H5 pages, dynamic demonstrations, and ......
                 </p>
-                {/* When the disabled attribute is present and set to true, the element becomes
-                non-interactive and its functionality is disabled. i.e. if isLoading is set
-                to true, the button becomes no longer clickable. Only once isLoading is set
-                to false, i.e. no longer loading when transaction has finished, the button
-                disabled becomes false and thus button becomes clickable again. */}
                 <button
                   onClick={() => {
                     writeAsync();
                   }}
-                  className="btn btn-sm w-1/6 btn-outline text-black bg-red-500"
+                  className="btn btn-outline text-black bg-red-500"
                   disabled={isLoading}
                 >
-                  Default
+                  Initiate Transaction
                 </button>
                 <RainbowKitCustomConnectButton />
               </div>
