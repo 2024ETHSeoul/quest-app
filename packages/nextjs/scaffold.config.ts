@@ -1,3 +1,4 @@
+// import { defineChain } from "viem";
 import * as chains from "viem/chains";
 
 export type ScaffoldConfig = {
@@ -7,6 +8,29 @@ export type ScaffoldConfig = {
   walletConnectProjectId: string;
   onlyLocalBurnerWallet: boolean;
   walletAutoConnect: boolean;
+};
+
+export const neonTestnet = {
+  id: 245022926,
+  name: "neonTestnet",
+  nativeCurrency: {
+    decimals: 18,
+    name: "neon",
+    symbol: "NEON",
+  },
+  rpcUrls: {
+    public: ["https://devnet.neonevm.org"],
+    default: ["https://devnet.neonevm.org"],
+  },
+  blockExplorers: {
+    default: { name: "Explorer", url: "https://devnet.neonscan.org" },
+  },
+  contracts: {
+    Tavern: {
+      address: "0xcA11bde05977b3631167028862bE2a173976CA11",
+      blockCreated: 5882,
+    },
+  },
 };
 
 const scaffoldConfig = {

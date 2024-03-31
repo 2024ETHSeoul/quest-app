@@ -180,7 +180,7 @@ const Home: NextPage = () => {
                   className="btn btn-outline text-black bg-red-500"
                   disabled={isLoading}
                 >
-                  Initiate Transaction
+                  Apply
                 </button>
                 <RainbowKitCustomConnectButton />
               </div>
