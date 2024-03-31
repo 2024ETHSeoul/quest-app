@@ -1,52 +1,18 @@
 "use client";
 
-// this needs image saved locally
-// import { useState } from "react";
 import Image from "next/image";
 import "@rainbow-me/rainbowkit/styles.css";
 import type { NextPage } from "next";
-
-/* Similar to other virtual machines like the Java Virtual Machine (JVM),
-the EVM is a runtime environment where Ethereum smart contracts are executed.
-It's a simulated computer that runs on every node in the Ethereum network.
-
-In the context of the Ethereum network, a "node" refers to any computing
-device that participates in the Ethereum blockchain network. These nodes
-maintain a copy of the entire Ethereum blockchain and are responsible for
-validating, storing, and relaying transactions and blocks.
-
-Viem is full featured lightweight javascript library for
-interacting with EVM chains.
-
-Scaffold-ETH itself doesn't "install" the Ethereum Virtual Machine (EVM)
-because the EVM is a fundamental component of the Ethereum protocol,
-not something that can be installed or uninstalled separately.
-
-Instead, Scaffold-ETH provides a local development environment that
-simulates an Ethereum blockchain network, complete with a local EVM instance,
-for testing and development purposes. This simulated EVM allows developers
-to deploy and interact with smart contracts locally without interacting
-with the Ethereum mainnet or testnets.*/
 import { parseEther } from "viem";
 import { RainbowKitCustomConnectButton } from "~~/components/scaffold-eth";
-// import { WagmiProvider } from "wagmi";
-// import { arbitrum, base, mainnet, optimism, polygon } from "wagmi/chains";
 import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
-
-// const projectId = "abb38b05f98be771affc9a21cafbc07e";
-// const config = getDefaultConfig({
-//   appName: "My RainbowKit App",
-//   projectId: projectId,
-//   chains: [mainnet, polygon, optimism, arbitrum, base],
-//   ssr: true, // If your dApp uses server side rendering (SSR)
-// });
 
 const Home: NextPage = () => {
   const { writeAsync, isLoading } = useScaffoldContractWrite({
     contractName: "Tavern",
     functionName: "createNewQuest",
     args: [0, 0, 10n, ""],
-    value: parseEther("0.01"), // 0.01 eth/ether will be transferred
+    value: parseEther("0.001"), // 0.01 eth/ether will be transferred
     onBlockConfirmation: transactionReceipt => {
       console.log("Transaction block hash", transactionReceipt.blockHash);
     },
