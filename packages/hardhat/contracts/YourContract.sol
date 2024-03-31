@@ -16,6 +16,7 @@ import "hardhat/console.sol";
  * It also allows the owner to withdraw the Ether in the contract
  * @author BuidlGuidl
  */
+ // contractName = YourContract
 contract YourContract {
 	// State Variables
 	// immutable keyword makes it not mutable
